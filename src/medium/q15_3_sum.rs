@@ -6,7 +6,6 @@
 
 struct Solution;
 
-// FIXME: tle
 // @lc code=start
 impl Solution {
     pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
