@@ -1,0 +1,10 @@
+{
+  "name": "leetcode",
+  "packageManager": "yarn@4.2.2",
+  "devDependencies": {
+    "husky": "^9.0.11"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}
