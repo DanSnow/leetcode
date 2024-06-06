@@ -10,36 +10,63 @@ struct Solution;
 // @lc code=start
 impl Solution {
     pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+        use std::{cmp::Ordering, collections::HashSet};
         nums.sort_unstable();
-        use std::collections::HashSet;
         let mut res = vec![];
         let mut seen = HashSet::new();
-        while nums.len() > 2 {
-            let n = *nums.last().unwrap();
-            for i in 0..nums.len() - 1 {
-                let x = nums[i];
-                let target = -(n + x);
-                if let Some(_) = nums[(i + 1)..nums.len() - 1]
-                    .iter()
-                    .copied()
-                    .find(|m| *m == target)
-                {
-                    let group = vec![x, target, n];
-                    if seen.contains(&(x, target, n)) {
-                        continue;
-                    }
-                    seen.insert((x, target, n));
-                    res.push(group);
-                }
-            }
-            while let Some(last) = nums.last() {
-                if *last != n {
+        let mut i = 0;
+
+        while nums[i] <= 0 {
+            let mut j = i + 1;
+            let mut k = nums.len() - 1;
+            loop {
+                if j >= k || k <= i {
                     break;
                 }
-                nums.remove(nums.len() - 1);
+                let ord = (nums[i] + nums[j] + nums[k]).cmp(&0);
+
+                match ord {
+                    Ordering::Equal => {
+                        let group = (nums[i], nums[j], nums[k]);
+                        if !seen.contains(&group) {
+                            seen.insert(group);
+                            res.push(vec![nums[i], nums[j], nums[k]]);
+                        }
+                        j += 1;
+                        k = nums.len() - 1;
+                    }
+                    Ordering::Greater => {
+                        k -= 1;
+                    }
+                    Ordering::Less => {
+                        j += 1;
+                    }
+                }
+            }
+
+            i += 1;
+            if i == nums.len() {
+                break;
             }
         }
+
         res
     }
 }
 // @lc code=end
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn it_work() {
+        assert_eq!(
+            vec![vec![-1, -1, 2], vec![-1, 0, 1]],
+            Solution::three_sum(vec![-1, 0, 1, 2, -1, -4])
+        );
+        assert_eq!(
+            vec![vec![-1, -1, 2], vec![-1, 0, 1]],
+            Solution::three_sum(vec![-2, 0, 1, 1, 2])
+        );
+    }
+}
