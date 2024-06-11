@@ -5,4 +5,5 @@ mod q22_generate_parentheses;
 mod q33_search_in_rotated_sorted_array;
 mod q34_find_first_and_last_position_of_element_in_sorted_array;
 mod q39_combination_sum;
+mod q57_insert_interval;
 mod q75_sort_colors;
