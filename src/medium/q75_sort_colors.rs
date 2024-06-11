@@ -8,6 +8,7 @@ struct Solution;
 
 // @lc code=start
 impl Solution {
+    // other solution: https://www.wikiwand.com/en/Dutch_national_flag_problem
     pub fn sort_colors(nums: &mut Vec<i32>) {
         let mut buckets = [0; 3];
         for i in nums.iter().copied() {
