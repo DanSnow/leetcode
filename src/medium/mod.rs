@@ -9,3 +9,4 @@ mod q39_combination_sum;
 mod q56_merge_intervals;
 mod q57_insert_interval;
 mod q75_sort_colors;
+mod q8_string_to_integer_atoi;
