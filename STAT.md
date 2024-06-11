@@ -20,5 +20,7 @@ medium
 hard
 ===
 
-N/A
+| date | finished |
+| --- | --- |
+| 2024-06-11 | 1 |
 
