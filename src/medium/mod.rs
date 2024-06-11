@@ -7,6 +7,7 @@ mod q238_product_of_array_except_self;
 mod q33_search_in_rotated_sorted_array;
 mod q34_find_first_and_last_position_of_element_in_sorted_array;
 mod q39_combination_sum;
+mod q3_longest_substring_without_repeating_characters;
 mod q438_find_all_anagrams_in_a_string;
 mod q56_merge_intervals;
 mod q57_insert_interval;
