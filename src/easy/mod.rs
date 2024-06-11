@@ -7,6 +7,7 @@ mod q20_valid_parentheses;
 mod q217_contains_duplicate;
 mod q21_merge_two_sorted_lists;
 mod q242_valid_anagram;
+mod q278_first_bad_version;
 mod q409_longest_palindrome;
 mod q704_binary_search;
 mod q9_palindrome_number;
