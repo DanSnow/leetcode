@@ -11,5 +11,6 @@ mod q3_longest_substring_without_repeating_characters;
 mod q438_find_all_anagrams_in_a_string;
 mod q56_merge_intervals;
 mod q57_insert_interval;
+mod q5_longest_palindromic_substring;
 mod q75_sort_colors;
 mod q8_string_to_integer_atoi;
