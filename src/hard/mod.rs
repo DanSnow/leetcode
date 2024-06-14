@@ -1,1 +1,2 @@
+mod q1235_maximum_profit_in_job_scheduling;
 mod q76_minimum_window_substring;
