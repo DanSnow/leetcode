@@ -8,8 +8,7 @@ struct Solution;
 
 // @lc code=start
 impl Solution {
-    // FIXME: runtime error
-    pub fn job_scheduling(mut start_time: Vec<i32>, end_time: Vec<i32>, profit: Vec<i32>) -> i32 {
+    pub fn job_scheduling(start_time: Vec<i32>, end_time: Vec<i32>, profit: Vec<i32>) -> i32 {
         use std::cmp::max;
 
         if start_time.len() == 0 {
@@ -17,8 +16,6 @@ impl Solution {
         }
 
         assert!(start_time.len() == end_time.len() && end_time.len() == profit.len());
-
-        let max_end = end_time.iter().copied().max().unwrap();
 
         #[derive(Debug, Clone, Copy, PartialEq, Eq, Ord, PartialOrd)]
         struct Job {
@@ -38,28 +35,36 @@ impl Solution {
             jobs.push(job);
         }
 
-        jobs.sort_unstable_by_key(|job| job.start_time);
-        start_time.sort_unstable();
+        jobs.sort_unstable_by(|left, right| {
+            left.end_time
+                .cmp(&right.end_time)
+                .then(left.start_time.cmp(&right.start_time))
+        });
 
-        // TODO: reduce space usage
-        let mut scheduling_profits = vec![0; (max_end + 1) as usize];
+        let mut scheduling_profits = vec![0; jobs.len()];
         let mut max_profit = 0;
 
-        for job in jobs.iter().copied() {
-            scheduling_profits[job.end_time as usize] = max(
-                // add previous job profit
-                job.profit + scheduling_profits[job.start_time as usize],
-                scheduling_profits[job.end_time as usize],
-            );
-            let current_profit = scheduling_profits[job.end_time as usize];
-            let update_points = start_time.partition_point(|time| *time < job.end_time);
-            for i in start_time[update_points..].iter().copied() {
-                if scheduling_profits[i as usize] <= current_profit {
-                    scheduling_profits[i as usize] = current_profit
-                } else {
-                    break;
+        for (index, job) in jobs.iter().copied().enumerate() {
+            let start_index = jobs.binary_search_by_key(&job.start_time, |job| job.end_time);
+            let start_profit = match start_index {
+                Ok(start_index) => scheduling_profits[start_index],
+                Err(start_bound_index) => {
+                    if start_bound_index == 0 {
+                        0
+                    } else {
+                        // when not found, the index is the right bound
+                        scheduling_profits[start_bound_index - 1]
+                    }
                 }
+            };
+            // add previous no conflict job profit
+            let mut current_profit = job.profit + start_profit;
+            // check if we have better profit from previous jobs
+            // if we do this to all the jobs, we can make sure to have the best profit
+            if index > 0 {
+                current_profit = max(current_profit, scheduling_profits[index - 1]);
             }
+            scheduling_profits[index] = current_profit;
             max_profit = max(current_profit, max_profit);
         }
 
