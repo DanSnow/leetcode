@@ -2,6 +2,7 @@ mod q11_container_with_most_water;
 mod q12_integer_to_roman;
 mod q15_3_sum;
 mod q17_letter_combinations_of_a_phone_number;
+mod q207_course_schedule;
 mod q22_generate_parentheses;
 mod q238_product_of_array_except_self;
 mod q33_search_in_rotated_sorted_array;
