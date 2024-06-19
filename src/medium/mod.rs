@@ -16,6 +16,7 @@ mod q54_spiral_matrix;
 mod q56_merge_intervals;
 mod q57_insert_interval;
 mod q5_longest_palindromic_substring;
+mod q721_accounts_merge;
 mod q75_sort_colors;
 mod q8_string_to_integer_atoi;
 mod q981_time_based_key_value_store;
