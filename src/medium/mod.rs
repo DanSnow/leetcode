@@ -6,6 +6,7 @@ mod q200_number_of_islands;
 mod q207_course_schedule;
 mod q22_generate_parentheses;
 mod q238_product_of_array_except_self;
+mod q310_minimum_height_trees;
 mod q33_search_in_rotated_sorted_array;
 mod q34_find_first_and_last_position_of_element_in_sorted_array;
 mod q39_combination_sum;
