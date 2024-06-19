@@ -10,7 +10,7 @@ struct Solution;
 impl Solution {
     // ref: https://web.ntnu.edu.tw/~algo/DirectedAcyclicGraph.html
     pub fn can_finish(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
-        use std::collections::HashMap;
+        use std::collections::{HashMap, VecDeque};
 
         if prerequisites.is_empty() {
             return true;
@@ -29,31 +29,28 @@ impl Solution {
                 .or_insert_with(|| vec![edge[1]]);
         }
 
-        for _ in 0..num_courses as usize {
-            let start_node = match references
-                .iter()
-                .copied()
-                .enumerate()
-                .find(|(_, r)| *r == 0)
-            {
-                Some((start_node, _)) => start_node,
-                None => return false,
-            };
+        let mut queue = references
+            .iter()
+            .copied()
+            .enumerate()
+            .filter_map(|(node, r)| if r == 0 { Some(node as i32) } else { None })
+            .collect::<VecDeque<_>>();
 
-            if start_node == usize::MAX {
-                return false;
-            }
-
-            references[start_node] = -1;
-
-            if let Some(connected_nodes) = graph.get(&(start_node as i32)) {
+        let mut visited_count = 0;
+        while let Some(start_node) = queue.pop_front() {
+            if let Some(connected_nodes) = graph.get(&start_node) {
                 for node in connected_nodes.iter().copied() {
                     references[node as usize] -= 1;
+                    if references[node as usize] == 0 {
+                        queue.push_back(node);
+                    }
                 }
             }
+
+            visited_count += 1;
         }
 
-        true
+        visited_count == num_courses
     }
 }
 // @lc code=end
