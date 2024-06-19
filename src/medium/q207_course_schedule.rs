@@ -9,6 +9,7 @@ struct Solution;
 // @lc code=start
 impl Solution {
     // ref: https://web.ntnu.edu.tw/~algo/DirectedAcyclicGraph.html
+    // Kahn's algorithm
     pub fn can_finish(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
         use std::collections::{HashMap, VecDeque};
 
