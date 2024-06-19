@@ -22,4 +22,5 @@ mod q75_sort_colors;
 mod q79_word_search;
 mod q8_string_to_integer_atoi;
 mod q981_time_based_key_value_store;
+mod q98_validate_binary_search_tree;
 mod q994_rotting_oranges;
