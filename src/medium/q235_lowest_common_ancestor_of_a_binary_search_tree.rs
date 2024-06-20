@@ -71,10 +71,12 @@ impl Solution {
             None => None,
             Some(node) => {
                 let node_ref = node.borrow();
+                // All the left children should smaller than p and q
                 if node_ref.val > large.val {
                     drop(large);
                     drop(small);
                     Self::lowest_common_ancestor(node_ref.left.clone(), Some(p), Some(q))
+                // All the right children should larger than p and q
                 } else if node_ref.val < small.val {
                     drop(large);
                     drop(small);
