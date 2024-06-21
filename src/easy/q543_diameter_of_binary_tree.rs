@@ -67,6 +67,7 @@ impl Solution {
                     std::cmp::max(
                         left + right,
                         std::cmp::max(
+                            // need to consider for every node, as it may be a unbalanced tree.
                             max_diameter(node.left.clone()),
                             max_diameter(node.right.clone()),
                         ),
