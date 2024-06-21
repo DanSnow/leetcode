@@ -8,6 +8,7 @@ mod q207_course_schedule;
 mod q22_generate_parentheses;
 mod q230_kth_smallest_element_in_a_bst;
 mod q235_lowest_common_ancestor_of_a_binary_search_tree;
+mod q236_lowest_common_ancestor_of_a_binary_tree;
 mod q238_product_of_array_except_self;
 mod q310_minimum_height_trees;
 mod q33_search_in_rotated_sorted_array;
