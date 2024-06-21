@@ -11,6 +11,7 @@ mod q226_invert_binary_tree;
 mod q242_valid_anagram;
 mod q278_first_bad_version;
 mod q409_longest_palindrome;
+mod q543_diameter_of_binary_tree;
 mod q704_binary_search;
 mod q733_flood_fill;
 mod q9_palindrome_number;
