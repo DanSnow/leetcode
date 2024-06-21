@@ -5,6 +5,7 @@ mod q121_best_time_to_buy_and_sell_stock;
 mod q125_valid_palindrome;
 mod q169_majority_element;
 mod q1_two_sum;
+mod q206_reverse_linked_list;
 mod q20_valid_parentheses;
 mod q217_contains_duplicate;
 mod q21_merge_two_sorted_lists;
