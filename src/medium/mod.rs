@@ -5,6 +5,7 @@ mod q17_letter_combinations_of_a_phone_number;
 mod q200_number_of_islands;
 mod q207_course_schedule;
 mod q22_generate_parentheses;
+mod q230_kth_smallest_element_in_a_bst;
 mod q235_lowest_common_ancestor_of_a_binary_search_tree;
 mod q238_product_of_array_except_self;
 mod q310_minimum_height_trees;
