@@ -17,6 +17,7 @@ mod q34_find_first_and_last_position_of_element_in_sorted_array;
 mod q39_combination_sum;
 mod q3_longest_substring_without_repeating_characters;
 mod q438_find_all_anagrams_in_a_string;
+mod q46_permutations;
 mod q542_01_matrix;
 mod q54_spiral_matrix;
 mod q56_merge_intervals;
