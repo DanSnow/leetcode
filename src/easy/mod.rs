@@ -10,6 +10,7 @@ mod q20_valid_parentheses;
 mod q217_contains_duplicate;
 mod q21_merge_two_sorted_lists;
 mod q226_invert_binary_tree;
+mod q232_implement_queue_using_stacks;
 mod q242_valid_anagram;
 mod q278_first_bad_version;
 mod q383_ransom_note;
