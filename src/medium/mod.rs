@@ -3,6 +3,7 @@ mod q105_construct_binary_tree_from_preorder_and_inorder_traversal;
 mod q11_container_with_most_water;
 mod q12_integer_to_roman;
 mod q146_lru_cache;
+mod q150_evaluate_reverse_polish_notation;
 mod q155_min_stack;
 mod q15_3_sum;
 mod q17_letter_combinations_of_a_phone_number;
