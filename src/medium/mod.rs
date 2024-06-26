@@ -16,6 +16,7 @@ mod q235_lowest_common_ancestor_of_a_binary_search_tree;
 mod q236_lowest_common_ancestor_of_a_binary_tree;
 mod q238_product_of_array_except_self;
 mod q310_minimum_height_trees;
+mod q322_coin_change;
 mod q33_search_in_rotated_sorted_array;
 mod q34_find_first_and_last_position_of_element_in_sorted_array;
 mod q39_combination_sum;
