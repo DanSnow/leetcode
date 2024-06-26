@@ -33,6 +33,7 @@ mod q75_sort_colors;
 mod q78_subsets;
 mod q79_word_search;
 mod q8_string_to_integer_atoi;
+mod q973_k_closest_points_to_origin;
 mod q981_time_based_key_value_store;
 mod q98_validate_binary_search_tree;
 mod q994_rotting_oranges;
