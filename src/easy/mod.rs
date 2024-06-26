@@ -18,6 +18,7 @@ mod q409_longest_palindrome;
 mod q543_diameter_of_binary_tree;
 mod q67_add_binary;
 mod q704_binary_search;
+mod q70_climbing_stairs;
 mod q733_flood_fill;
 mod q876_middle_of_the_linked_list;
 mod q9_palindrome_number;
