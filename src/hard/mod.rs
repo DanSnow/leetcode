@@ -4,3 +4,4 @@ mod q224_basic_calculator;
 mod q297_serialize_and_deserialize_binary_tree;
 mod q42_trapping_rain_water;
 mod q76_minimum_window_substring;
+mod q84_largest_rectangle_in_histogram;
