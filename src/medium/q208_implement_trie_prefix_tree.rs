@@ -5,145 +5,12 @@
  */
 
 // @lc code=start
-// FIXME: has error in large test case
-use std::{cmp::min, mem};
+use std::{cmp::min, collections::HashMap, mem};
 
-#[derive(Debug, Clone)]
-enum TrieNode {
-    Prefix {
-        prefix: String,
-        children: Vec<TrieNode>,
-    },
-    Leaf {
-        text: String,
-    },
-}
-
-impl TrieNode {
-    fn insert(&mut self, text: String, view: &str) {
-        match self {
-            Self::Prefix { prefix, children } => {
-                let mut is_inserted = false;
-                for node in children.iter_mut() {
-                    match node {
-                        Self::Prefix { prefix, .. } => {
-                            if view.starts_with(prefix.as_str()) {
-                                let view = &view[prefix.len()..];
-                                node.insert(text.clone(), view);
-                                is_inserted = true;
-                                break;
-                            }
-                        }
-                        Self::Leaf { text: t } => {
-                            if t == text.as_str() {
-                                is_inserted = true;
-                                break;
-                            }
-                            let common_prefix = get_common_prefix(view, t.as_str());
-                            if !common_prefix.is_empty() {
-                                let prefix_node = Self::Prefix {
-                                    prefix: common_prefix.to_owned(),
-                                    children: vec![Self::Leaf { text: text.clone() }],
-                                };
-                                let leaf = mem::replace(node, prefix_node);
-                                let Self::Prefix {
-                                    ref mut children, ..
-                                } = node
-                                else {
-                                    panic!("impossible");
-                                };
-                                children.push(leaf);
-                                is_inserted = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if !is_inserted {
-                    children.push(Self::Leaf { text })
-                }
-            }
-            Self::Leaf { .. } => panic!("Attempt insert into leaf node"),
-        }
-    }
-
-    fn search(&self, text: &str, view: &str) -> bool {
-        match self {
-            Self::Prefix { children, .. } => {
-                for node in children.iter() {
-                    let res = match node {
-                        Self::Prefix { prefix, children } => {
-                            if view.starts_with(prefix.as_str()) {
-                                let view = &view[prefix.len()..];
-                                for node in children.iter() {
-                                    if node.search(text, view) {
-                                        return true;
-                                    }
-                                }
-                            }
-                            false
-                        }
-                        Self::Leaf { text: t } => t == text,
-                    };
-                    if res {
-                        return true;
-                    }
-                }
-                false
-            }
-            Self::Leaf { text: t } => t == text,
-        }
-    }
-
-    fn starts_with(&self, text: &str, view: &str) -> bool {
-        match self {
-            Self::Prefix { children, .. } => {
-                for node in children.iter() {
-                    let res = match node {
-                        Self::Prefix { prefix, children } => {
-                            if view.starts_with(prefix.as_str()) {
-                                let view = &view[prefix.len()..];
-                                for node in children.iter() {
-                                    if node.starts_with(text, view) {
-                                        return true;
-                                    }
-                                }
-                            }
-                            false
-                        }
-                        Self::Leaf { text: t } => t.starts_with(text),
-                    };
-                    if res {
-                        return true;
-                    }
-                }
-                false
-            }
-            Self::Leaf { text: t } => t.starts_with(text),
-        }
-    }
-}
-
-fn get_common_prefix<'a>(left: &'a str, right: &'a str) -> &'a str {
-    if left.is_empty() || right.is_empty() {
-        return "";
-    }
-
-    // Safety: in the constraints, there is only letters
-    let l = left.as_bytes();
-    let r = right.as_bytes();
-
-    if l[0] != r[0] {
-        return "";
-    }
-
-    let len = min(l.len(), r.len());
-    for i in 1..len {
-        if l[i] != r[i] {
-            return &left[0..(i - 1)];
-        }
-    }
-    &left[0..len]
+#[derive(Debug, Clone, Default)]
+struct TrieNode {
+    children: HashMap<char, TrieNode>,
+    is_leaf: bool,
 }
 
 #[derive(Debug, Clone)]
@@ -158,23 +25,30 @@ struct Trie {
 impl Trie {
     fn new() -> Self {
         Self {
-            root: TrieNode::Prefix {
-                prefix: String::new(),
-                children: vec![],
-            },
+            root: Default::default(),
         }
     }
 
     fn insert(&mut self, word: String) {
-        self.root.insert(word.clone(), &word);
+        let node = word.chars().fold(&mut self.root, |node, c| {
+            node.children.entry(c).or_default()
+        });
+        node.is_leaf = true;
+    }
+
+    fn search_node(&self, word: String) -> Option<&TrieNode> {
+        word.chars().fold(Some(&self.root), |node, c| {
+            node.and_then(|node| node.children.get(&c))
+        })
     }
 
     fn search(&self, word: String) -> bool {
-        self.root.search(&word, &word)
+        let node = self.search_node(word);
+        node.map(|node| node.is_leaf).unwrap_or(false)
     }
 
     fn starts_with(&self, prefix: String) -> bool {
-        self.root.starts_with(&prefix, &prefix)
+        self.search_node(prefix).is_some()
     }
 }
 
