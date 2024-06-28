@@ -35,11 +35,8 @@ impl Solution {
                     for i in index..nums.len() {
                         let n = nums[i];
                         match memo.get(&UsedItem { n, target }) {
-                            Some(r) => {
-                                if *r {
-                                    return true;
-                                }
-                            }
+                            Some(&true) => return true,
+                            Some(&false) => (),
                             None => {
                                 let r = dfs(&nums[(i + 1)..], target - nums[i], memo);
                                 memo.insert(UsedItem { n, target }, r);
