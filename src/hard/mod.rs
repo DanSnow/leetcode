@@ -1,6 +1,7 @@
 mod q1235_maximum_profit_in_job_scheduling;
 mod q127_word_ladder;
 mod q224_basic_calculator;
+mod q23_merge_k_sorted_lists;
 mod q295_find_median_from_data_stream;
 mod q297_serialize_and_deserialize_binary_tree;
 mod q42_trapping_rain_water;
