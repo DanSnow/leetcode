@@ -30,6 +30,7 @@ mod q54_spiral_matrix;
 mod q56_merge_intervals;
 mod q57_insert_interval;
 mod q5_longest_palindromic_substring;
+mod q621_task_scheduler;
 mod q62_unique_paths;
 mod q721_accounts_merge;
 mod q75_sort_colors;
