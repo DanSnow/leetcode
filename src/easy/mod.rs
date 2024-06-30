@@ -17,6 +17,7 @@ mod q383_ransom_note;
 mod q409_longest_palindrome;
 mod q543_diameter_of_binary_tree;
 mod q594_longest_harmonious_subsequence;
+mod q643_maximum_average_subarray_i;
 mod q67_add_binary;
 mod q704_binary_search;
 mod q70_climbing_stairs;
