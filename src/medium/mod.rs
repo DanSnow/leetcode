@@ -8,6 +8,7 @@ mod q150_evaluate_reverse_polish_notation;
 mod q155_min_stack;
 mod q15_3_sum;
 mod q17_letter_combinations_of_a_phone_number;
+mod q187_repeated_dna_sequences;
 mod q199_binary_tree_right_side_view;
 mod q200_number_of_islands;
 mod q207_course_schedule;
