@@ -23,6 +23,7 @@ mod q310_minimum_height_trees;
 mod q322_coin_change;
 mod q33_search_in_rotated_sorted_array;
 mod q34_find_first_and_last_position_of_element_in_sorted_array;
+mod q395_longest_substring_with_at_least_k_repeating_characters;
 mod q39_combination_sum;
 mod q3_longest_substring_without_repeating_characters;
 mod q416_partition_equal_subset_sum;
