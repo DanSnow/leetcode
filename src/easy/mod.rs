@@ -9,6 +9,7 @@ mod q206_reverse_linked_list;
 mod q20_valid_parentheses;
 mod q217_contains_duplicate;
 mod q21_merge_two_sorted_lists;
+mod q2269_find_the_k_beauty_of_a_number;
 mod q226_invert_binary_tree;
 mod q232_implement_queue_using_stacks;
 mod q242_valid_anagram;
