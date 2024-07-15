@@ -14,23 +14,18 @@ impl Solution {
         let mut prefix_product = vec![0; nums.len()];
         let mut suffix_product = vec![0; nums.len()];
 
-        for i in 0..nums.len() {
-            prefix_product[i] = if i == 0 {
-                1
-            } else {
-                prefix_product[i - 1] * nums[i - 1]
-            };
-            suffix_product[nums.len() - i - 1] = if i == 0 {
-                1
-            } else {
-                suffix_product[nums.len() - i] * nums[nums.len() - i]
-            };
+        prefix_product[0] = 1;
+        suffix_product[nums.len() - 1] = 1;
+        for i in 1..nums.len() {
+            prefix_product[i] = prefix_product[i - 1] * nums[i - 1];
+            suffix_product[nums.len() - i - 1] =
+                suffix_product[nums.len() - i] * nums[nums.len() - i];
         }
 
-        let mut answer = vec![0; nums.len()];
+        let mut answer = prefix_product;
 
         for i in 0..nums.len() {
-            answer[i] = prefix_product[i] * suffix_product[i];
+            answer[i] *= suffix_product[i];
         }
 
         answer
