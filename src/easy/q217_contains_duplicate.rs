@@ -11,16 +11,10 @@ impl Solution {
     pub fn contains_duplicate(nums: Vec<i32>) -> bool {
         use std::collections::HashSet;
 
-        let mut seen = HashSet::new();
+        let len = nums.len();
+        let deduped = nums.into_iter().collect::<HashSet<i32>>();
 
-        for i in nums {
-            if seen.contains(&i) {
-                return true;
-            }
-            seen.insert(i);
-        }
-
-        false
+        len != deduped.len()
     }
 }
 // @lc code=end
