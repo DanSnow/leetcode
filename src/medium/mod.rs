@@ -16,6 +16,7 @@ mod q208_implement_trie_prefix_tree;
 mod q209_minimum_size_subarray_sum;
 mod q22_generate_parentheses;
 mod q230_kth_smallest_element_in_a_bst;
+mod q2342_maximum_sum;
 mod q235_lowest_common_ancestor_of_a_binary_search_tree;
 mod q236_lowest_common_ancestor_of_a_binary_tree;
 mod q238_product_of_array_except_self;
