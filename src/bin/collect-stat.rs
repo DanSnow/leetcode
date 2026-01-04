@@ -1,3 +1,4 @@
+use fjall::{KeyspaceCreateOptions, PersistMode, Slice};
 use std::{
     collections::BTreeMap,
     fs::{self, File},
@@ -15,8 +16,13 @@ struct Report {
 }
 
 fn main() {
-    fs::create_dir_all(".stat").expect("fail to create dir");
-    let db = sled::open(".stat/db").expect("fail to create db");
+    fs::create_dir_all(".stat/fjall").expect("fail to create dir");
+    let fjall_db = fjall::Database::builder(".stat/fjall")
+        .open()
+        .expect("fail to open fjall database");
+    let db = fjall_db
+        .keyspace("stats", KeyspaceCreateOptions::default)
+        .expect("fail to open fjall keyspace");
 
     let mut report = Report {
         easy: BTreeMap::new(),
@@ -51,7 +57,7 @@ fn main() {
                             created.day()
                         );
 
-                        db.insert(filename, created_str.clone())
+                        db.insert(Slice::new(filename), Slice::new(created_str.as_bytes()))
                             .expect("fail to insert record");
                         created_str
                     }
@@ -71,6 +77,11 @@ fn main() {
             }
         }
     }
+
+    // Persist changes to disk
+    fjall_db
+        .persist(PersistMode::SyncAll)
+        .expect("fail to persist fjall data");
 
     let mut f = File::create("STAT.md").expect("Fail to create stat.md");
     for dir in TARGET_DIRS {
