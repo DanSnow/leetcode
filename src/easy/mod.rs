@@ -3,6 +3,7 @@ mod q1051_height_checker;
 mod q110_balanced_binary_tree;
 mod q121_best_time_to_buy_and_sell_stock;
 mod q125_valid_palindrome;
+mod q1592_rearrange_spaces_between_words;
 mod q169_majority_element;
 mod q1_two_sum;
 mod q206_reverse_linked_list;
