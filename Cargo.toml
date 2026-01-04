@@ -4,5 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+bstr = "1.12.1"
+fjall = "3.0.0"
+jiff = "0.2.17"
+rootcause = "0.11.1"
 sled = "1.0.0-alpha.121"
 time = "0.3.36"
