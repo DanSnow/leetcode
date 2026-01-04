@@ -1,4 +1,5 @@
 use fjall::{KeyspaceCreateOptions, PersistMode, Slice};
+use jiff::Timestamp;
 use rootcause::prelude::*;
 use std::{
     collections::BTreeMap,
@@ -47,15 +48,11 @@ fn main() -> Result<()> {
                 Some(value) => String::from_utf8(value.to_vec()).attach("fail to convert to string")?,
                 None => {
                     let meta = entry.metadata().attach("fail to read meta")?;
-                    let created =
-                        time::OffsetDateTime::from(meta.created().attach("fail to get created time")?);
+                    let created_time = meta.created().attach("fail to get created time")?;
+                    let timestamp = Timestamp::try_from(created_time).attach("fail to convert to timestamp")?;
+                    let datetime = timestamp.to_zoned(jiff::tz::TimeZone::system());
 
-                    let created_str = format!(
-                        "{}-{:02}-{:02}",
-                        created.year(),
-                        created.month() as u8,
-                        created.day()
-                    );
+                    let created_str = datetime.strftime("%Y-%m-%d").to_string();
 
                     db.insert(Slice::new(filename), Slice::new(created_str.as_bytes()))
                         .attach("fail to insert record")?;
