@@ -48,7 +48,7 @@ mod q973_k_closest_points_to_origin;
 mod q98_validate_binary_search_tree;
 mod q981_time_based_key_value_store;
 mod q994_rotting_oranges;
-
+mod q1456_max_vowels;
 
 
 
